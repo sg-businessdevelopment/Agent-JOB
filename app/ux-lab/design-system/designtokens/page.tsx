@@ -272,10 +272,10 @@ export default function DesignTokensPage() {
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-3xl font-bold text-foreground">Design Tokens</h1>
           <div className="flex gap-3">
-            <Link href="/design-system/components">
+            <Link href="/ux-lab/design-system/components">
               <Button variant="primary-s">Components</Button>
             </Link>
-            <Link href="/design-system">
+            <Link href="/ux-lab/design-system">
               <Button variant="gray-m">Back to Design System Dashboard</Button>
             </Link>
           </div>

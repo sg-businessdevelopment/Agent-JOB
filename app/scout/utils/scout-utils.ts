@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, XCircle, Mail, Clock } from "lucide-react"
-import type { Candidate } from "@/app/types/candidate"
+import type { Candidate } from "../types/candidate"
 
 export const getScoutStatusBadge = (status: string) => {
   const variant = getScoutStatusVariant(status)

@@ -30,7 +30,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent className="text-center">
               <Button asChild variant="primary-m" className="w-full">
-                <Link href="/dashboard/components">View Components</Link>
+                <Link href="/ux-lab/design-system/components">View Components</Link>
               </Button>
             </CardContent>
           </Card>
@@ -45,7 +45,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent className="text-center">
               <Button asChild variant="primary-m" className="w-full">
-                <Link href="/dashboard/designtokens">View Design Tokens</Link>
+                <Link href="/ux-lab/design-system/designtokens">View Design Tokens</Link>
               </Button>
             </CardContent>
           </Card>

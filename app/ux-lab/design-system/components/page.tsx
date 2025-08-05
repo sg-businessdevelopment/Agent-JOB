@@ -136,10 +136,10 @@ export default function ComponentsPage() {
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-3xl font-bold">Components</h1>
           <div className="flex gap-3">
-            <Link href="/design-system/designtokens">
+            <Link href="/ux-lab/design-system/designtokens">
               <Button variant="primary-s">Design Tokens</Button>
             </Link>
-            <Link href="/design-system">
+            <Link href="/ux-lab/design-system">
               <Button variant="gray-m">Design System Dashboard</Button>
             </Link>
           </div>

@@ -171,7 +171,9 @@ export function ScoutTemplateManager({ selectedJobId, onTemplateSelect }: ScoutT
           <ul className="list-disc list-inside mt-1 space-y-1">
             <li>{"{候補者名}"} → 候補者の名前</li>
             <li>{"{求人タイトル}"} → 選択した求人のタイトル</li>
-            <li>{"{スキル}"} → 候補者の主要スキル</li>
+            <li>{"{スキル}"} → 候補者の主→候補者の名前</li>
+            <li>{"{求人タイトル}"}→選択した求人のタイトル</li>
+            <li>{"{スキル}"}→候補者の主要スキル</li>
           </ul>
         </div>
       </CardContent>

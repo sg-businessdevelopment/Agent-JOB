@@ -1,6 +1,6 @@
-// ./home/page.tsx からデフォルトエクスポートされているコンポーネントをインポートします。
-// もし名前付きエクスポートの場合は、 import { ComponentName } from './home/page'; のように変更してください。
-import HomePage from './dashboard/page';
+// ./ux-lab/dashboard/page.tsx からデフォルトエクスポートされているコンポーネントをインポートします。
+// もし名前付きエクスポートの場合は、 import { ComponentName } from './ux-lab/dashboard/page'; のように変更してください。
+import HomePage from "./ux-lab/dashboard/page"
 
 /**
  * ルートURL ("/") にアクセスした際に表示されるメインページです。
@@ -8,5 +8,5 @@ import HomePage from './dashboard/page';
  */
 export default function Page() {
   // HomePageコンポーネントを呼び出して、その内容をそのまま表示します。
-  return <HomePage />;
+  return <HomePage />
 }
