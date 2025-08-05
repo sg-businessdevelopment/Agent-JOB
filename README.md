@@ -7,7 +7,11 @@ This is a prototype project built with Next.js and Vercel’s V0 design system.
 - Environment variable setup
 - Production-ready file structure
 
-## Getting Started
+## Getting Started In Local
 1. Clone the repo
-2. Run `npm install`
-3. Run `npm run dev`
+  **copy this GitHub project to your local computer** using Git.
+   Command:
+   ```bash
+   git clone https://github.com/sg-businessdevelopment/Agent-JOB.git
+3. Run `npm install`
+4. Run `npm run dev`
