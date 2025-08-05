@@ -1,177 +1,506 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  /* ===== TYPOGRAPHY TOKENS ===== */
-  /* Font Family - Base font for the entire system */
-  --font-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* ==========================================================================
+   *  Design Tokens
+   * ========================================================================== */
 
-  /* Font Sizes - Based on Tailwind defaults with Japanese typography considerations */
-  --text-xs: 0.75rem; /* 12px - Small labels, captions */
-  --text-sm: 0.875rem; /* 14px - Secondary text, form labels */
-  --text-base: 1rem; /* 16px - Body text, default size */
-  --text-lg: 1.125rem; /* 18px - Large body text */
-  --text-xl: 1.25rem; /* 20px - Small headings */
-  --text-2xl: 1.5rem; /* 24px - Medium headings */
-  --text-3xl: 1.875rem; /* 30px - Large headings */
-  --text-4xl: 2.25rem; /* 36px - Extra large headings */
-  --text-5xl: 3rem; /* 48px - Display headings */
+  /* ===== COLOR TOKENS ===== */
+  /* カラーパレット: すべての色を定義します */
 
-  /* Line Heights - Optimized for Japanese text readability */
-  --leading-none: 1; /* 1.0 - Tight spacing for headings */
-  --leading-tight: 1.25; /* 1.25 - Compact text */
-  --leading-snug: 1.375; /* 1.375 - Slightly relaxed */
-  --leading-normal: 1.5; /* 1.5 - Standard body text */
-  --leading-relaxed: 1.625; /* 1.625 - Comfortable reading */
-  --leading-loose: 2; /* 2.0 - Very spacious */
-
-  /* Letter Spacing - Adjusted for Japanese characters */
-  --tracking-tighter: -0.05em; /* -0.05em - Very tight */
-  --tracking-tight: -0.025em; /* -0.025em - Tight */
-  --tracking-normal: 0; /* 0 - Normal spacing */
-  --tracking-wide: 0.025em; /* 0.025em - Wide */
-  --tracking-wider: 0.05em; /* 0.05em - Wider */
-  --tracking-widest: 0.1em; /* 0.1em - Widest */
-
-  /* Font Weights - Available weights for Noto Sans JP */
-  --font-light: 300; /* Light weight */
-  --font-normal: 400; /* Normal/Regular weight */
-  --font-medium: 500; /* Medium weight */
-  --font-semibold: 600; /* Semi-bold weight */
-  --font-bold: 700; /* Bold weight */
-
-  /* ===== GRAYSCALE TOKENS ===== */
-  /* Light backgrounds and subtle elements */
+  /* Grayscale Palette - UIの基本となる無彩色 */
   --gray-50: #f5f5fa;
   --gray-100: #e6e8f0;
   --gray-200: #d0d3db;
   --gray-300: #adaeb8;
   --gray-400: #999ba5;
-
-  /* Medium grays for borders and disabled states */
   --gray-500: #888b8f;
   --gray-600: #6c6c68;
   --gray-700: #4e4f52;
   --gray-800: #3e3e40;
   --gray-900: #1c1c1c;
 
-  /* ===== PRIMARY TOKENS (Blue) ===== */
-  /* Main brand colors for primary actions */
+  /* Primary Palette (Blue) - ブランドの主要カラー */
   --primary-50: #f5f7ff;
   --primary-300: #99b2ff;
   --primary-500: #668cff;
   --primary-700: #3366ff;
   --primary-900: #0040ff;
 
-  /* ===== SECONDARY TOKENS (Orange) ===== */
-  /* Accent colors for secondary actions */
+  /* Secondary Palette (Orange) - ブランドの補助カラー */
   --secondary-50: #fff8f0;
   --secondary-300: #ffd0b0;
   --secondary-500: #ff8c85;
   --secondary-700: #ff8f33;
   --secondary-900: #ff7300;
 
-  /* ===== ERROR TOKENS (Red) ===== */
-  /* Error states and destructive actions */
-  --error-50: #ffea65;
+  /* Status & Feedback Palette - 状態を示すカラー */
+  --error-50: #ffea65; /* Note: This seems more like a warning color */
   --error-500: #ff0995;
   --error-900: #ff3b00;
 
-  /* ===== SPECIAL COLORS ===== */
-  /* Aqua - For info and special highlights */
+  /* Special Colors - 特別な色 */
   --aqua: #00daff;
-  /* Amber - For warnings and attention */
   --amber: #ffa800;
 
-  /* ===== SHADES ===== */
-  /* Pure black and white */
+  /* Shades - 純粋な白と黒 */
   --white: #ffffff;
   --black: #000000;
 
-  /* ===== SEMANTIC TOKENS ===== */
-  /* Background colors */
-  --background: var(--white); /* #FFFFFF - Main background */
-  --foreground: var(--gray-900); /* #1C1C1C - Main text color */
+  /* ===== TAILWIND DEFAULT COLOR TOKENS ===== */
+  /* TailwindCSSの標準カラーパレット（既存と重複しないもののみ追加） */
 
-  /* Card and surface colors */
-  --card: var(--white); /* #FFFFFF - Card backgrounds */
-  --card-foreground: var(--gray-900); /* #1C1C1C - Card text */
+  /* Slate Colors - Cool gray with a subtle blue tint */
+  --slate-50: #f8fafc; /* Tailwind default: #f8fafc */
+  --slate-100: #f1f5f9; /* Tailwind default: #f1f5f9 */
+  --slate-200: #e2e8f0; /* Tailwind default: #e2e8f0 */
+  --slate-300: #cbd5e1; /* Tailwind default: #cbd5e1 */
+  --slate-400: #94a3b8; /* Tailwind default: #94a3b8 */
+  --slate-500: #64748b; /* Tailwind default: #64748b */
+  --slate-600: #475569; /* Tailwind default: #475569 */
+  --slate-700: #334155; /* Tailwind default: #334155 */
+  --slate-800: #1e293b; /* Tailwind default: #1e293b */
+  --slate-900: #0f172a; /* Tailwind default: #0f172a */
+  --slate-950: #020617; /* Tailwind default: #020617 */
 
-  /* Popover colors */
-  --popover: var(--white); /* #FFFFFF - Popover background */
-  --popover-foreground: var(--gray-900); /* #1C1C1C - Popover text */
+  /* Zinc Colors - Pure gray without any color tint */
+  --zinc-50: #fafafa; /* Tailwind default: #fafafa */
+  --zinc-100: #f4f4f5; /* Tailwind default: #f4f4f5 */
+  --zinc-200: #e4e4e7; /* Tailwind default: #e4e4e7 */
+  --zinc-300: #d4d4d8; /* Tailwind default: #d4d4d8 */
+  --zinc-400: #a1a1aa; /* Tailwind default: #a1a1aa */
+  --zinc-500: #71717a; /* Tailwind default: #71717a */
+  --zinc-600: #52525b; /* Tailwind default: #52525b */
+  --zinc-700: #3f3f46; /* Tailwind default: #3f3f46 */
+  --zinc-800: #27272a; /* Tailwind default: #27272a */
+  --zinc-900: #18181b; /* Tailwind default: #18181b */
+  --zinc-950: #09090b; /* Tailwind default: #09090b */
 
-  /* Primary button and accent colors */
-  --primary: var(--primary-700); /* #3366FF - Primary buttons */
-  --primary-foreground: var(--white); /* #FFFFFF - Primary button text */
+  /* Neutral Colors - Warm gray */
+  --neutral-50: #fafafa; /* Tailwind default: #fafafa */
+  --neutral-100: #f5f5f5; /* Tailwind default: #f5f5f5 */
+  --neutral-200: #e5e5e5; /* Tailwind default: #e5e5e5 */
+  --neutral-300: #d4d4d4; /* Tailwind default: #d4d4d4 */
+  --neutral-400: #a3a3a3; /* Tailwind default: #a3a3a3 */
+  --neutral-500: #737373; /* Tailwind default: #737373 */
+  --neutral-600: #525252; /* Tailwind default: #525252 */
+  --neutral-700: #404040; /* Tailwind default: #404040 */
+  --neutral-800: #262626; /* Tailwind default: #262626 */
+  --neutral-900: #171717; /* Tailwind default: #171717 */
+  --neutral-950: #0a0a0a; /* Tailwind default: #0a0a0a */
 
-  /* Secondary/muted colors */
-  --secondary: var(--gray-100); /* #E6E8F0 - Secondary backgrounds */
-  --secondary-foreground: var(--gray-900); /* #1C1C1C - Secondary text */
+  /* Stone Colors - Warm gray with a slight brown tint */
+  --stone-50: #fafaf9; /* Tailwind default: #fafaf9 */
+  --stone-100: #f5f5f4; /* Tailwind default: #f5f5f4 */
+  --stone-200: #e7e5e4; /* Tailwind default: #e7e5e4 */
+  --stone-300: #d6d3d1; /* Tailwind default: #d6d3d1 */
+  --stone-400: #a8a29e; /* Tailwind default: #a8a29e */
+  --stone-500: #78716c; /* Tailwind default: #78716c */
+  --stone-600: #57534e; /* Tailwind default: #57534e */
+  --stone-700: #44403c; /* Tailwind default: #44403c */
+  --stone-800: #292524; /* Tailwind default: #292524 */
+  --stone-900: #1c1917; /* Tailwind default: #1c1917 */
+  --stone-950: #0c0a09; /* Tailwind default: #0c0a09 */
 
-  /* Muted colors for subtle elements */
-  --muted: var(--gray-100); /* #E6E8F0 - Muted backgrounds */
-  --muted-foreground: var(--gray-600); /* #6C6C68 - Muted text */
+  /* Red Colors - Error and danger states */
+  --red-50: #fef2f2; /* Tailwind default: #fef2f2 */
+  --red-100: #fee2e2; /* Tailwind default: #fee2e2 */
+  --red-200: #fecaca; /* Tailwind default: #fecaca */
+  --red-300: #fca5a5; /* Tailwind default: #fca5a5 */
+  --red-400: #f87171; /* Tailwind default: #f87171 */
+  --red-500: #ef4444; /* Tailwind default: #ef4444 */
+  --red-600: #dc2626; /* Tailwind default: #dc2626 */
+  --red-700: #b91c1c; /* Tailwind default: #b91c1c */
+  --red-800: #991b1b; /* Tailwind default: #991b1b */
+  --red-900: #7f1d1d; /* Tailwind default: #7f1d1d */
+  --red-950: #450a0a; /* Tailwind default: #450a0a */
 
-  /* Accent colors for highlights */
-  --accent: var(--gray-100); /* #E6E8F0 - Accent backgrounds */
-  --accent-foreground: var(--gray-900); /* #1C1C1C - Accent text */
+  /* Orange Colors - Warning and accent states */
+  --orange-50: #fff7ed; /* Tailwind default: #fff7ed */
+  --orange-100: #ffedd5; /* Tailwind default: #ffedd5 */
+  --orange-200: #fed7aa; /* Tailwind default: #fed7aa */
+  --orange-300: #fdba74; /* Tailwind default: #fdba74 */
+  --orange-400: #fb923c; /* Tailwind default: #fb923c */
+  --orange-500: #f97316; /* Tailwind default: #f97316 */
+  --orange-600: #ea580c; /* Tailwind default: #ea580c */
+  --orange-700: #c2410c; /* Tailwind default: #c2410c */
+  --orange-800: #9a3412; /* Tailwind default: #9a3412 */
+  --orange-900: #7c2d12; /* Tailwind default: #7c2d12 */
+  --orange-950: #431407; /* Tailwind default: #431407 */
 
-  /* Destructive colors for errors */
-  --destructive: var(--error-500); /* #FF0995 - Error/destructive actions */
-  --destructive-foreground: var(--white); /* #FFFFFF - Error text */
+  /* Yellow Colors - Warning and highlight states */
+  --yellow-50: #fefce8; /* Tailwind default: #fefce8 */
+  --yellow-100: #fef3c7; /* Tailwind default: #fef3c7 */
+  --yellow-200: #fde68a; /* Tailwind default: #fde68a */
+  --yellow-300: #fcd34d; /* Tailwind default: #fcd34d */
+  --yellow-400: #fbbf24; /* Tailwind default: #fbbf24 */
+  --yellow-500: #f59e0b; /* Tailwind default: #f59e0b */
+  --yellow-600: #d97706; /* Tailwind default: #d97706 */
+  --yellow-700: #b45309; /* Tailwind default: #b45309 */
+  --yellow-800: #92400e; /* Tailwind default: #92400e */
+  --yellow-900: #78350f; /* Tailwind default: #78350f */
+  --yellow-950: #451a03; /* Tailwind default: #451a03 */
 
-  /* Border and Input colors */
-  --border: var(--gray-200); /* #D0D3DB - Default borders */
-  --input: var(--gray-200); /* #D0D3DB - Input borders */
+  /* Green Colors - Success and positive states */
+  --green-50: #f0fdf4; /* Tailwind default: #f0fdf4 */
+  --green-100: #dcfce7; /* Tailwind default: #dcfce7 */
+  --green-200: #bbf7d0; /* Tailwind default: #bbf7d0 */
+  --green-300: #86efac; /* Tailwind default: #86efac */
+  --green-400: #4ade80; /* Tailwind default: #4ade80 */
+  --green-500: #22c55e; /* Tailwind default: #22c55e */
+  --green-600: #16a34a; /* Tailwind default: #16a34a */
+  --green-700: #15803d; /* Tailwind default: #15803d */
+  --green-800: #166534; /* Tailwind default: #166534 */
+  --green-900: #14532d; /* Tailwind default: #14532d */
+  --green-950: #052e16; /* Tailwind default: #052e16 */
 
-  /* Focus ring color */
-  --ring: var(--primary-700); /* #3366FF - Focus indicators */
+  /* Blue Colors - Information and primary states */
+  --blue-50: #eff6ff; /* Tailwind default: #eff6ff */
+  --blue-100: #dbeafe; /* Tailwind default: #dbeafe */
+  --blue-200: #bfdbfe; /* Tailwind default: #bfdbfe */
+  --blue-300: #93c5fd; /* Tailwind default: #93c5fd */
+  --blue-400: #60a5fa; /* Tailwind default: #60a5fa */
+  --blue-500: #3b82f6; /* Tailwind default: #3b82f6 */
+  --blue-600: #2563eb; /* Tailwind default: #2563eb */
+  --blue-700: #1d4ed8; /* Tailwind default: #1d4ed8 */
+  --blue-800: #1e40af; /* Tailwind default: #1e40af */
+  --blue-900: #1e3a8a; /* Tailwind default: #1e3a8a */
+  --blue-950: #172554; /* Tailwind default: #172554 */
 
-  /* Chart colors for data visualization */
-  --chart-1: var(--primary-700); /* #3366FF - Primary chart color */
-  --chart-2: var(--secondary-700); /* #FF8F33 - Secondary chart color */
-  --chart-3: var(--aqua); /* #00DAFF - Tertiary chart color */
-  --chart-4: var(--amber); /* #FFA800 - Quaternary chart color */
-  --chart-5: var(--error-500); /* #FF0995 - Quinary chart color */
+  /* Indigo Colors - Deep blue for sophisticated interfaces */
+  --indigo-50: #eef2ff; /* Tailwind default: #eef2ff */
+  --indigo-100: #e0e7ff; /* Tailwind default: #e0e7ff */
+  --indigo-200: #c7d2fe; /* Tailwind default: #c7d2fe */
+  --indigo-300: #a5b4fc; /* Tailwind default: #a5b4fc */
+  --indigo-400: #818cf8; /* Tailwind default: #818cf8 */
+  --indigo-500: #6366f1; /* Tailwind default: #6366f1 */
+  --indigo-600: #4f46e5; /* Tailwind default: #4f46e5 */
+  --indigo-700: #4338ca; /* Tailwind default: #4338ca */
+  --indigo-800: #3730a3; /* Tailwind default: #3730a3 */
+  --indigo-900: #312e81; /* Tailwind default: #312e81 */
+  --indigo-950: #1e1b4b; /* Tailwind default: #1e1b4b */
 
-  /* ===== BORDER RADIUS TOKENS ===== */
-  /* Consistent border radius values for rounded corners */
-  --radius-s: 12px; /* Small border radius for buttons and inputs */
-  --radius-m: 16px; /* Medium border radius for cards */
-  --radius-l: 32px; /* Large border radius for modals and containers */
+  /* Purple Colors - Creative and premium interfaces */
+  --purple-50: #faf5ff; /* Tailwind default: #faf5ff */
+  --purple-100: #f3e8ff; /* Tailwind default: #f3e8ff */
+  --purple-200: #e9d5ff; /* Tailwind default: #e9d5ff */
+  --purple-300: #d8b4fe; /* Tailwind default: #d8b4fe */
+  --purple-400: #c084fc; /* Tailwind default: #c084fc */
+  --purple-500: #a855f7; /* Tailwind default: #a855f7 */
+  --purple-600: #9333ea; /* Tailwind default: #9333ea */
+  --purple-700: #7c3aed; /* Tailwind default: #7c3aed */
+  --purple-800: #6b21a8; /* Tailwind default: #6b21a8 */
+  --purple-900: #581c87; /* Tailwind default: #581c87 */
+  --purple-950: #3b0764; /* Tailwind default: #3b0764 */
+
+  /* Pink Colors - Playful and feminine interfaces */
+  --pink-50: #fdf2f8; /* Tailwind default: #fdf2f8 */
+  --pink-100: #fce7f3; /* Tailwind default: #fce7f3 */
+  --pink-200: #fbcfe8; /* Tailwind default: #fbcfe8 */
+  --pink-300: #f9a8d4; /* Tailwind default: #f9a8d4 */
+  --pink-400: #f472b6; /* Tailwind default: #f472b6 */
+  --pink-500: #ec4899; /* Tailwind default: #ec4899 */
+  --pink-600: #db2777; /* Tailwind default: #db2777 */
+  --pink-700: #be185d; /* Tailwind default: #be185d */
+  --pink-800: #9d174d; /* Tailwind default: #9d174d */
+  --pink-900: #831843; /* Tailwind default: #831843 */
+  --pink-950: #500724; /* Tailwind default: #500724 */
+
+  /* ===== TYPOGRAPHY TOKENS ===== */
+  /* タイポグラフィ: フォント関連のスタイルを定義します */
+
+  /* Font Family - 基本フォント */
+  --font-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Tailwind Default Font Families */
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Font Sizes - テキストサイズ */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
+  /* Tailwind Default Font Sizes (additional) */
+  --text-6xl: 3.75rem; /* 60px - Tailwind default: 3.75rem */
+  --text-7xl: 4.5rem; /* 72px - Tailwind default: 4.5rem */
+  --text-8xl: 6rem; /* 96px - Tailwind default: 6rem */
+  --text-9xl: 8rem; /* 128px - Tailwind default: 8rem */
+
+  /* Font Weights - フォントの太さ */
+  --font-thin: 100; /* Tailwind default: 100 */
+  --font-extralight: 200; /* Tailwind default: 200 */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800; /* Tailwind default: 800 */
+  --font-black: 900; /* Tailwind default: 900 */
+
+  /* Line Heights - 行の高さ */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Tailwind Default Line Heights (additional) */
+  --leading-3: 0.75rem; /* 12px - Tailwind default: 0.75rem */
+  --leading-4: 1rem; /* 16px - Tailwind default: 1rem */
+  --leading-5: 1.25rem; /* 20px - Tailwind default: 1.25rem */
+  --leading-6: 1.5rem; /* 24px - Tailwind default: 1.5rem */
+  --leading-7: 1.75rem; /* 28px - Tailwind default: 1.75rem */
+  --leading-8: 2rem; /* 32px - Tailwind default: 2rem */
+  --leading-9: 2.25rem; /* 36px - Tailwind default: 2.25rem */
+  --leading-10: 2.5rem; /* 40px - Tailwind default: 2.5rem */
+
+  /* Letter Spacing - 文字間隔 */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ===== TAILWIND DEFAULT SPACING TOKENS ===== */
+  /* スペーシング: Tailwindの標準スペーシングスケール */
+  --space-px: 1px; /* Tailwind default: 1px */
+  --space-0: 0px; /* Tailwind default: 0px */
+  --space-0-5: 0.125rem; /* 2px - Tailwind default: 0.125rem */
+  --space-1: 0.25rem; /* 4px - Tailwind default: 0.25rem */
+  --space-1-5: 0.375rem; /* 6px - Tailwind default: 0.375rem */
+  --space-2: 0.5rem; /* 8px - Tailwind default: 0.5rem */
+  --space-2-5: 0.625rem; /* 10px - Tailwind default: 0.625rem */
+  --space-3: 0.75rem; /* 12px - Tailwind default: 0.75rem */
+  --space-3-5: 0.875rem; /* 14px - Tailwind default: 0.875rem */
+  --space-4: 1rem; /* 16px - Tailwind default: 1rem */
+  --space-5: 1.25rem; /* 20px - Tailwind default: 1.25rem */
+  --space-6: 1.5rem; /* 24px - Tailwind default: 1.5rem */
+  --space-7: 1.75rem; /* 28px - Tailwind default: 1.75rem */
+  --space-8: 2rem; /* 32px - Tailwind default: 2rem */
+  --space-9: 2.25rem; /* 36px - Tailwind default: 2.25rem */
+  --space-10: 2.5rem; /* 40px - Tailwind default: 2.5rem */
+  --space-11: 2.75rem; /* 44px - Tailwind default: 2.75rem */
+  --space-12: 3rem; /* 48px - Tailwind default: 3rem */
+  --space-14: 3.5rem; /* 56px - Tailwind default: 3.5rem */
+  --space-16: 4rem; /* 64px - Tailwind default: 4rem */
+  --space-20: 5rem; /* 80px - Tailwind default: 5rem */
+  --space-24: 6rem; /* 96px - Tailwind default: 6rem */
+  --space-28: 7rem; /* 112px - Tailwind default: 7rem */
+  --space-32: 8rem; /* 128px - Tailwind default: 8rem */
+  --space-36: 9rem; /* 144px - Tailwind default: 9rem */
+  --space-40: 10rem; /* 160px - Tailwind default: 10rem */
+  --space-44: 11rem; /* 176px - Tailwind default: 11rem */
+  --space-48: 12rem; /* 192px - Tailwind default: 12rem */
+  --space-52: 13rem; /* 208px - Tailwind default: 13rem */
+  --space-56: 14rem; /* 224px - Tailwind default: 14rem */
+  --space-60: 15rem; /* 240px - Tailwind default: 240px */
+  --space-64: 16rem; /* 256px - Tailwind default: 16rem */
+  --space-72: 18rem; /* 288px - Tailwind default: 18rem */
+  --space-80: 20rem; /* 320px - Tailwind default: 20rem */
+  --space-96: 24rem; /* 384px - Tailwind default: 24rem */
+
+  /* ===== BORDER & RADIUS TOKENS ===== */
+  /* 境界線と角丸: 要素の枠線や角の丸みを定義します */
+
+  /* Border Radius - 角の丸み */
+  --radius-s: 12px; /* Small */
+  --radius-m: 16px; /* Medium */
+  --radius-l: 32px; /* Large */
+
+  /* Tailwind Default Border Radius */
+  --radius-none: 0px; /* Tailwind default: 0px */
+  --radius-sm: 0.125rem; /* 2px - Tailwind default: 0.125rem */
+  --radius-default: 0.25rem; /* 4px - Tailwind default: 0.25rem */
+  --radius-md: 0.375rem; /* 6px - Tailwind default: 0.375rem */
+  --radius-lg: 0.5rem; /* 8px - Tailwind default: 0.5rem */
+  --radius-xl: 0.75rem; /* 12px - Tailwind default: 0.75rem */
+  --radius-2xl: 1rem; /* 16px - Tailwind default: 1rem */
+  --radius-3xl: 1.5rem; /* 24px - Tailwind default: 1.5rem */
+  --radius-full: 9999px; /* Tailwind default: 9999px */
+
+  /* Border Width */
+  --border-0: 0px; /* Tailwind default: 0px */
+  --border-default: 1px; /* Tailwind default: 1px */
+  --border-2: 2px; /* Tailwind default: 2px */
+  --border-4: 4px; /* Tailwind default: 4px */
+  --border-8: 8px; /* Tailwind default: 8px */
+
+  /* ===== TAILWIND DEFAULT SHADOW TOKENS ===== */
+  /* 影: Tailwindの標準シャドウ定義 */
+  --shadow-normal-s: 0 2px 20px 0 rgba(0, 0, 0, 0.04);
+  --shadow-normal-m: 0 16px 32px -16px rgba(0, 0, 0, 0.2);
+  --shadow-normal-l: 0 16px 32px -16px rgba(0, 0, 0, 0.4);
+  --shadow-blue-s: 2px 2px 4px 0 rgba(0, 64, 255, 0.2);
+  --shadow-blue-m: 0 16px 32px -16px rgba(0, 64, 255, 0.4);
+  --shadow-none: 0 0px 0px 0 rgba(0, 0, 0, 0);
+
+  /* Tailwind Default Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* Tailwind default */
+  --shadow-default: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); /* Tailwind default */
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* Tailwind default */
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* Tailwind default */
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* Tailwind default */
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* Tailwind default */
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05); /* Tailwind default */
+
+  /* ===== TAILWIND DEFAULT OPACITY TOKENS ===== */
+  /* 透明度: Tailwindの標準透明度値 */
+  --opacity-0: 0; /* Tailwind default: 0 */
+  --opacity-5: 0.05; /* Tailwind default: 0.05 */
+  --opacity-10: 0.1; /* Tailwind default: 0.1 */
+  --opacity-20: 0.2; /* Tailwind default: 0.2 */
+  --opacity-25: 0.25; /* Tailwind default: 0.25 */
+  --opacity-30: 0.3; /* Tailwind default: 0.3 */
+  --opacity-40: 0.4; /* Tailwind default: 0.4 */
+  --opacity-50: 0.5; /* Tailwind default: 0.5 */
+  --opacity-60: 0.6; /* Tailwind default: 0.6 */
+  --opacity-70: 0.7; /* Tailwind default: 0.7 */
+  --opacity-75: 0.75; /* Tailwind default: 0.75 */
+  --opacity-80: 0.8; /* Tailwind default: 0.8 */
+  --opacity-90: 0.9; /* Tailwind default: 0.9 */
+  --opacity-95: 0.95; /* Tailwind default: 0.95 */
+  --opacity-100: 1; /* Tailwind default: 1 */
+
+  /* ===== TAILWIND DEFAULT Z-INDEX TOKENS ===== */
+  /* 重なり順: Tailwindの標準z-index値 */
+  --z-0: 0; /* Tailwind default: 0 */
+  --z-10: 10; /* Tailwind default: 10 */
+  --z-20: 20; /* Tailwind default: 20 */
+  --z-30: 30; /* Tailwind default: 30 */
+  --z-40: 40; /* Tailwind default: 40 */
+  --z-50: 50; /* Tailwind default: 50 */
+  --z-auto: auto; /* Tailwind default: auto */
 
   /* ===== GRADIENT TOKENS ===== */
-  /* Primary gradients for main brand elements */
+  /* グラデーション: 色の滑らかな変化を定義します */
   --gradient-blue-primary: linear-gradient(95deg, #00d4ff 0%, #0040ff 100%);
   --gradient-blue-secondary: linear-gradient(139deg, #f5f7ff 0%, #0040ff 100%);
-
-  /* Orange gradients for secondary brand elements */
   --gradient-orange-primary: linear-gradient(95deg, #ffa800 0%, #ff7300 100%);
   --gradient-orange-secondary: linear-gradient(139deg, #ffbc85 0%, #ff7300 100%);
   --gradient-orange-number: linear-gradient(139deg, #fff9f5 0%, #ff7300 100%);
-
-  /* Red gradients for error states and alerts */
   --gradient-red: linear-gradient(315deg, #ff3b00 3.12%, #ff9985 103.12%);
   --gradient-red-orange: linear-gradient(315deg, #ff3b00 3.12%, #ff8f33 103.12%);
-
-  /* Special gradients for unique elements */
   --gradient-red-purple: linear-gradient(95deg, #ff67e6 0%, #0f3fff 100%);
 
-  /* ===== SHADOW TOKENS ===== */
-  /* Normal shadows for general UI elements */
-  --shadow-normal-s: 0 2px 20px 0 rgba(0, 0, 0, 0.04); /* Small shadow for subtle elevation */
-  --shadow-normal-m: 0 16px 32px -16px rgba(0, 0, 0, 0.2); /* Medium shadow for cards */
-  --shadow-normal-l: 0 16px 32px -16px rgba(0, 0, 0, 0.4); /* Large shadow for modals */
-  --shadow-none: 0 0px 0px 0 rgba(0, 0, 0, 0);
+  /* ===== SEMANTIC TOKENS (MAPPING) ===== */
+  /* 意味論的トークン: 上記の基本トークンを具体的な用途に割り当てます */
 
-  /* Blue shadows for primary elements */
-  --shadow-blue-s: 2px 2px 4px 0 rgba(0, 64, 255, 0.2); /* Small blue shadow for buttons */
-  --shadow-blue-m: 0 16px 32px -16px rgba(0, 64, 255, 0.4); /* Medium blue shadow for primary cards */
+  /* Layout & Base Colors - アプリケーションの基本色 */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* Component Colors - コンポーネントの基本色 */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Action Colors - ボタンやインタラクティブ要素の色 */
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+
+  /* State & Muted Colors - 補助的なテキストや無効状態の色 */
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+
+  /* Feedback Colors - エラー、警告、成功などのフィードバック色 */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: var(--green-500);
+  --success-foreground: oklch(0.985 0 0);
+  --warning: var(--amber);
+  --warning-foreground: oklch(0.145 0 0);
+  --info: var(--aqua);
+  --info-foreground: oklch(0.145 0 0);
+
+  /* Border & Input Colors - 境界線や入力欄の色 */
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+
+  /* Data Visualization - グラフやチャートの色 */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Border radius for shadcn/ui compatibility */
+  --radius: 0.625rem;
 }
 
-/* ===== TAILWIND THEME INTEGRATION ===== */
-/* Essential mappings for Tailwind utility classes to work with our custom tokens */
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --success: var(--green-600);
+  --success-foreground: oklch(0.985 0 0);
+  --warning: var(--yellow-500);
+  --warning-foreground: oklch(0.145 0 0);
+  --info: var(--blue-500);
+  --info-foreground: oklch(0.985 0 0);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* ==========================================================================
+ *  Tailwind Theme Integration
+ * ========================================================================== */
+/* shadcn/uiがTailwindでカスタムトークンを使えるようにするためのマッピング */
 @theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -196,13 +525,24 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-
-  /* Radius mappings for Tailwind */
-  --radius-s: var(--radius-s);
-  --radius-m: var(--radius-m);
-  --radius-l: var(--radius-l);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ==========================================================================
+ *  Base Styles
+ * ========================================================================== */
+/* アプリケーション全体の基本的なスタイル定義 */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -211,211 +551,164 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
   }
-
-  /* デフォルトの :active スタイルをリセット */
-  button:active,
-  [role="button"]:active {
-    transform: none;
-    box-shadow: inherit;
-    opacity: inherit;
-  }
 }
 
-/* ===== UTILITY CLASSES ===== */
-/* Typography utilities */
+/* ==========================================================================
+ *  Utility Classes
+ * ========================================================================== */
+/* 頻繁に使用するスタイルをクラスとして定義 */
+
+/* Typography Utilities */
 .font-sans {
   font-family: var(--font-sans);
 }
-
 .text-xs {
   font-size: var(--text-xs);
 }
-
 .text-sm {
   font-size: var(--text-sm);
 }
-
 .text-base {
   font-size: var(--text-base);
 }
-
 .text-lg {
   font-size: var(--text-lg);
 }
-
 .text-xl {
   font-size: var(--text-xl);
 }
-
 .text-2xl {
   font-size: var(--text-2xl);
 }
-
 .text-3xl {
   font-size: var(--text-3xl);
 }
-
 .text-4xl {
   font-size: var(--text-4xl);
 }
-
 .text-5xl {
   font-size: var(--text-5xl);
 }
-
 .leading-none {
   line-height: var(--leading-none);
 }
-
 .leading-tight {
   line-height: var(--leading-tight);
 }
-
 .leading-snug {
   line-height: var(--leading-snug);
 }
-
 .leading-normal {
   line-height: var(--leading-normal);
 }
-
 .leading-relaxed {
   line-height: var(--leading-relaxed);
 }
-
 .leading-loose {
   line-height: var(--leading-loose);
 }
-
 .tracking-tighter {
   letter-spacing: var(--tracking-tighter);
 }
-
 .tracking-tight {
   letter-spacing: var(--tracking-tight);
 }
-
 .tracking-normal {
   letter-spacing: var(--tracking-normal);
 }
-
 .tracking-wide {
   letter-spacing: var(--tracking-wide);
 }
-
 .tracking-wider {
   letter-spacing: var(--tracking-wider);
 }
-
 .tracking-widest {
   letter-spacing: var(--tracking-widest);
 }
-
 .font-light {
   font-weight: var(--font-light);
 }
-
 .font-normal {
   font-weight: var(--font-normal);
 }
-
 .font-medium {
   font-weight: var(--font-medium);
 }
-
 .font-semibold {
   font-weight: var(--font-semibold);
 }
-
 .font-bold {
   font-weight: var(--font-bold);
 }
 
-/* Common shadow utilities */
+/* Shadow Utilities */
 .shadow-normal-s {
   box-shadow: var(--shadow-normal-s);
 }
-
 .shadow-normal-m {
   box-shadow: var(--shadow-normal-m);
 }
-
 .shadow-normal-l {
   box-shadow: var(--shadow-normal-l);
 }
-
 .shadow-blue-s {
   box-shadow: var(--shadow-blue-s);
 }
-
 .shadow-blue-m {
   box-shadow: var(--shadow-blue-m);
 }
-
-/* 新しく shadow-none クラスを追加 */
 .shadow-none {
   box-shadow: var(--shadow-none);
 }
 
-/* Common gradient utilities */
+/* Gradient Utilities */
 .bg-gradient-blue-primary {
   background: var(--gradient-blue-primary);
 }
-
 .bg-gradient-blue-secondary {
   background: var(--gradient-blue-secondary);
 }
-
 .bg-gradient-orange-primary {
   background: var(--gradient-orange-primary);
 }
-
 .bg-gradient-orange-secondary {
   background: var(--gradient-orange-secondary);
 }
-
 .bg-gradient-orange-number {
   background: var(--gradient-orange-number);
 }
-
 .bg-gradient-red {
   background: var(--gradient-red);
 }
-
 .bg-gradient-red-orange {
   background: var(--gradient-red-orange);
 }
-
 .bg-gradient-red-purple {
   background: var(--gradient-red-purple);
 }
 
-/* Border radius utilities */
+/* Border Radius Utilities */
 .rounded-s {
   border-radius: var(--radius-s);
 }
-
 .rounded-m {
   border-radius: var(--radius-m);
 }
-
 .rounded-l {
   border-radius: var(--radius-l);
 }
 
-/* Common surface styling */
+/* Surface Utilities */
 .surface-default {
   border-radius: var(--radius-l);
   background: var(--white);
 }
-
 .surface-gradient-blue {
   border-radius: var(--radius-l);
   background: var(--gradient-blue-primary);
 }
 
-/* ===== BUTTON ICON UTILITIES ===== */
-/* Generic button with icon before text */
+/* Button Icon Utilities */
 .btn-with-icon::before {
   content: "";
   display: inline-block;
@@ -427,23 +720,17 @@
   margin-right: 4px;
   flex-shrink: 0;
 }
-
-/* Specific icon variants - can be combined with btn-with-icon */
 .btn-icon-pick::before {
   background-image: url("/icons/pick-icon.png");
   width: 27.601px;
   height: 28.297px;
 }
-
-/* Future icon variants can be added here */
 .btn-icon-download::before {
   background-image: url("/icons/download-icon.png");
 }
-
 .btn-icon-upload::before {
   background-image: url("/icons/upload-icon.png");
 }
-
 .btn-icon-save::before {
   background-image: url("/icons/save-icon.png");
 }
